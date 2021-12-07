@@ -4,6 +4,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 //prettier-ignore
 import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
@@ -24,6 +25,7 @@ const db = getFirestore(app);
 export const userAuth = getAuth(app);
 export const firestore = getFirestore(app);
 export const createAccount = createUserWithEmailAndPassword;
+export const signInAccount = signInWithEmailAndPassword;
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
