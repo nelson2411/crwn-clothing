@@ -15,6 +15,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selector";
 import CheckoutPage from "./pages/checkout/Checkout";
+import Styled from 'styled-components'
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
