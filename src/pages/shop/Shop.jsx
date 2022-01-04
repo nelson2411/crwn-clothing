@@ -4,10 +4,6 @@ import CollectionsOverviewContainer from "../../components/Collections-Overview/
 import CollectionPageContainer from "../collection/CollectionContainer";
 import { connect } from "react-redux";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
-import {
-  selectIsCollectionFetching,
-  selectIsCollectionsLoaded,
-} from "../../redux/shop/shop.selector";
 
 class ShopPage extends React.Component {
   componentDidMount() {
