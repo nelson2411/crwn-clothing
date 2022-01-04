@@ -7,7 +7,15 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 //prettier-ignore
-import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  onSnapshot,
+  collection,
+  writeBatch,
+} from "firebase/firestore";
 
 const config = {
   apiKey: "AIzaSyA5Vg4YSjv5D-WizL5oyjL0LyLPXoCFK4M",
@@ -20,13 +28,44 @@ const config = {
 };
 
 const app = initializeApp(config);
-const db = getFirestore(app);
-
+export const db = getFirestore();
 export const userAuth = getAuth(app);
 export const firestore = getFirestore(app);
 export const createAccount = createUserWithEmailAndPassword;
 export const signInAccount = signInWithEmailAndPassword;
 
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach((element) => {
+    const docRef = doc(collection(db, collectionKey));
+    console.log({ docRef });
+    batch.set(docRef, element);
+  });
+
+  return await batch.commit();
+};
+
+export const convertCollectionsSnapshotToMap = (collectionsSnapshot) => {
+  const transformedCollection = collectionsSnapshot.docs.map((docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+
+    return {
+      routeName: encodeURI(title.toLowerCase?.()),
+
+      id: docSnapshot.id,
+      title,
+      items,
+    };
+  });
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase?.()] = collection;
+    return accumulator;
+  }, {});
+};
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 

@@ -6,16 +6,13 @@ import Header from "./components/header/Header";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up-pages/SignInSignUp";
-import {
-  db,
-  userAuth,
-  createUserProfileDocument,
-} from "./firebase/firebase.utils";
+import { userAuth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { doc, onSnapshot } from "firebase/firestore";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selector";
 import CheckoutPage from "./pages/checkout/Checkout";
-import Styled from 'styled-components'
+import Styled from "styled-components";
+import { selectCollectionsForPreview } from "./redux/shop/shop.selector";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -36,9 +33,8 @@ class App extends React.Component {
             ...snapshot.data(),
           });
         });
-      } else {
-        setCurrentUser(userAuth);
       }
+      setCurrentUser(userAuth);
     });
   }
 
