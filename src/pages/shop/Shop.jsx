@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
+import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import CollectionsOverviewContainer from "../../components/Collections-Overview/CollectionsOverviewContainer";
 import CollectionPageContainer from "../collection/CollectionContainer";
 import { connect } from "react-redux";
-import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 
 const ShopPage = ({ fetchCollectionsStart, match }) => {
   useEffect(() => {
