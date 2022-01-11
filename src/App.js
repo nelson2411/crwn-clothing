@@ -10,8 +10,9 @@ import CheckoutPage from "./pages/checkout/Checkout";
 import { checkUserSession } from "./redux/user/user.actions";
 
 const App = () => {
-  const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
+
+  const currentUser = useSelector(selectCurrentUser);
   useEffect(() => {
     dispatch(checkUserSession());
   }, [dispatch]);
