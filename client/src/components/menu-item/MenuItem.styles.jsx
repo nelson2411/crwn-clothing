@@ -1,4 +1,11 @@
 import styled from "styled-components";
+export const BackgroundImageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
+`;
 
 export const MenuItemContainer = styled.div`
   height: ${({ size }) => (size ? "380px" : "240px")};
@@ -14,7 +21,7 @@ export const MenuItemContainer = styled.div`
 
   &:hover {
     cursor: pointer;
-    & .background-image {
+    & ${BackgroundImageContainer} {
       transform: scale(1.1);
       transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     }
@@ -28,14 +35,6 @@ export const MenuItemContainer = styled.div`
   &:last-child {
     margin-left: 7.5px;
   }
-`;
-
-export const BackgroundImageContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
 
 export const ContentContainer = styled.div`
