@@ -8,16 +8,16 @@ import SignInAndSignUpPage from "./pages/sign-in-and-sign-up-pages/SignInSignUp"
 import { selectCurrentUser } from "./redux/user/user.selector";
 import CheckoutPage from "./pages/checkout/Checkout";
 import { checkUserSession } from "./redux/user/user.actions";
-
+import { GlobalStyle } from "./global.styles";
 const App = () => {
   const dispatch = useDispatch();
-
   const currentUser = useSelector(selectCurrentUser);
   useEffect(() => {
     dispatch(checkUserSession());
   }, [dispatch]);
   return (
     <div>
+      <GlobalStyle />
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
